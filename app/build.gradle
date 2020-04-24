@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -23,6 +25,14 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
 }
 
 dependencies {
@@ -32,11 +42,23 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation jetBrainsDependencies.values()
+    implementation androidXDependencies.values()
+    implementation androidDependenciesFramework.values()
+    implementation retrofitDependencies.values()
+    implementation loggingInterceptorDependencies.values()
+    implementation coroutinesDependencies.values()
+    implementation coroutinesAdapterDependencies.values()
+    implementation navigationDepdendencies.values()
+    implementation dexterDependencies.values()
+    implementation androidLifecycle.values()
+    implementation roomDependencies.values()
+
+    kapt androidKaptLibs.values()
+
+    testImplementation testDependencies.values()
+    testImplementation androidXTestLibs.values()
+
+    androidTestImplementation androidTestDependencies.values()
 }
