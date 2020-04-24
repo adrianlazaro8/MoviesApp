@@ -1,9 +1,10 @@
-package com.adrianlazaro.moviesapp
+package com.adrianlazaro.moviesapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.adrianlazaro.moviesapp.R
 
-class MainActivity : AppCompatActivity() {
+class MoviesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
