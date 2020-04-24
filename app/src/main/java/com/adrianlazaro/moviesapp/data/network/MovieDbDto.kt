@@ -1,4 +1,4 @@
-package com.adrianlazaro.moviesapp.data.server
+package com.adrianlazaro.moviesapp.data.network
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

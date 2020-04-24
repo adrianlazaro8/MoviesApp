@@ -1,4 +1,4 @@
-package com.adrianlazaro.moviesapp.data.server
+package com.adrianlazaro.moviesapp.data.network
 
 import retrofit2.http.GET
 import retrofit2.http.Query
