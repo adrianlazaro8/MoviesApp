@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.adrianlazaro.moviesapp.ui.main.MovieDetailFragment"
+        android:name="com.adrianlazaro.moviesapp.ui.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail" />
 </navigation>

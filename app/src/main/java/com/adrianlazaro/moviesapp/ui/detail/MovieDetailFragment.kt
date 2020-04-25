@@ -1,4 +1,4 @@
-package com.adrianlazaro.moviesapp.ui.main
+package com.adrianlazaro.moviesapp.ui.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
