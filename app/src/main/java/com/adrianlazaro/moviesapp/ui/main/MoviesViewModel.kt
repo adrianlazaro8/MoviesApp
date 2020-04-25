@@ -2,9 +2,10 @@ package com.adrianlazaro.moviesapp.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.adrianlazaro.domain.Movie
 
-class MoviesViewModel {
+class MoviesViewModel : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
     val uiState : LiveData<UiState>

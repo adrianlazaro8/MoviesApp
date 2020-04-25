@@ -53,6 +53,7 @@ dependencies {
     implementation navigationDepdendencies.values()
     implementation dexterDependencies.values()
     implementation androidLifecycle.values()
+    implementation glideDependencies.values()
     implementation roomDependencies.values()
 
     kapt androidKaptLibs.values()
