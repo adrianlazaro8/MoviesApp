@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +23,11 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): 
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
 fun ImageView.loadUrl(url: String) {
-    Glide.with(context).load(url).into(this)
+    Glide.with(context).load("https://image.tmdb.org/t/p/w185/$url").into(this)
+}
+
+fun Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT){
+    Toast.makeText(context, message, duration).show()
 }
 
 inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): Intent =
