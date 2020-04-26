@@ -11,12 +11,17 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.adrianlazaro.moviesapp.R
 import com.adrianlazaro.moviesapp.common.PermissionRequester
+import com.adrianlazaro.moviesapp.common.app
 import com.adrianlazaro.moviesapp.common.toast
 import kotlinx.android.synthetic.main.fragment_movies.*
 import com.adrianlazaro.moviesapp.ui.main.MoviesViewModel.UiState
 
 
 class MoviesFragment : Fragment() {
+
+    private lateinit var moviesFragmentComponent: MoviesFragmentComponent
+    private lateinit var adapter: MoviesAdapter
+
 
     private val moviesViewModel by lazy {
         ViewModelProviders.of(this)[MoviesViewModel::class.java]
@@ -28,14 +33,17 @@ class MoviesFragment : Fragment() {
         }
     }
 
-    private lateinit var adapter: MoviesAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?  = inflater.inflate(R.layout.fragment_movies, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_movies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        activity?.run {
+            moviesFragmentComponent = app.component.plus(MoviesFragmentModule())
+        }
+
         adapter = MoviesAdapter()
         rv.adapter = adapter
         moviesViewModel.uiState.observe(viewLifecycleOwner, Observer(::updateUi))
@@ -57,8 +65,8 @@ class MoviesFragment : Fragment() {
     }
 
     private fun requestLocationPermission() {
-        coarsePermissionRequester?.request {enabled ->
-            if(!enabled){
+        coarsePermissionRequester?.request { enabled ->
+            if (!enabled) {
                 toast(getString(R.string.disabled_permission))
             }
         }
