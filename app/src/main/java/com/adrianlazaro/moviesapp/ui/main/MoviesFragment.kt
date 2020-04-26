@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.adrianlazaro.moviesapp.R
 import com.adrianlazaro.moviesapp.common.PermissionRequester
 import com.adrianlazaro.moviesapp.common.app
+import com.adrianlazaro.moviesapp.common.getViewModel
 import com.adrianlazaro.moviesapp.common.toast
 import kotlinx.android.synthetic.main.fragment_movies.*
 import com.adrianlazaro.moviesapp.ui.main.MoviesViewModel.UiState
@@ -22,9 +23,8 @@ class MoviesFragment : Fragment() {
     private lateinit var moviesFragmentComponent: MoviesFragmentComponent
     private lateinit var adapter: MoviesAdapter
 
-
     private val moviesViewModel by lazy {
-        ViewModelProviders.of(this)[MoviesViewModel::class.java]
+        getViewModel { moviesFragmentComponent.moviesViewModel }
     }
 
     private val coarsePermissionRequester by lazy {

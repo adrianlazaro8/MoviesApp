@@ -8,6 +8,7 @@ import android.view.ViewGroup
 
 import com.adrianlazaro.moviesapp.R
 import com.adrianlazaro.moviesapp.common.app
+import com.adrianlazaro.moviesapp.common.getViewModel
 
 class MovieDetailFragment : Fragment() {
 
@@ -16,6 +17,10 @@ class MovieDetailFragment : Fragment() {
     }
 
     private lateinit var movieDetailFragmentComponent: MovieDetailFragmentComponent
+
+    private val movieDetailViewModel by lazy {
+        getViewModel { movieDetailFragmentComponent.movieDetailViewModel }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
