@@ -8,10 +8,12 @@ import com.adrianlazaro.domain.Movie
 import com.adrianlazaro.moviesapp.data.database.RoomDataSource
 import com.adrianlazaro.usecases.GetPopularMovies
 
-class MoviesViewModel : ViewModel() {
+class MoviesViewModel(
+    private val getPopularMovies: GetPopularMovies
+) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
-    val uiState : LiveData<UiState>
+    val uiState: LiveData<UiState>
         get() {
             return _uiState
         }

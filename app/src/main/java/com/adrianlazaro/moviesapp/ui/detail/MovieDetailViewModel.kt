@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.adrianlazaro.domain.Movie
 
-class MovieDetailViewModel : ViewModel(){
+class MovieDetailViewModel(
+    private val movieId: Int
+) : ViewModel() {
 
     private val _movie = MutableLiveData<UiModel>()
     val movie: LiveData<UiModel>

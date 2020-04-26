@@ -56,7 +56,7 @@ inline fun <VH : RecyclerView.ViewHolder, T> RecyclerView.Adapter<VH>.basicDiffU
     }
 
 @Suppress("UNCHECKED_CAST")
-inline fun <reified T : ViewModel> FragmentActivity.getViewModel(crossinline factory: () -> T): T {
+inline fun <reified T : ViewModel> Fragment.getViewModel(crossinline factory: () -> T): T {
 
     val vmFactory = object : ViewModelProvider.Factory {
         override fun <U : ViewModel> create(modelClass: Class<U>): U = factory() as U
