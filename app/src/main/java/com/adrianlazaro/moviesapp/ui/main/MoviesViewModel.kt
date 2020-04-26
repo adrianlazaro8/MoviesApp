@@ -10,6 +10,7 @@ import com.adrianlazaro.moviesapp.ui.BaseViewModel
 import com.adrianlazaro.usecases.GetPopularMovies
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MoviesViewModel(
     private val getPopularMovies: GetPopularMovies,
@@ -22,9 +23,17 @@ class MoviesViewModel(
             return _uiState
         }
 
+    fun refresh() {
+        launch {
+            _uiState.value = UiState.Loading
+            _uiState.value = UiState.Content(getPopularMovies.invoke())
+        }
+    }
+
+
     sealed class UiState {
         object Loading : UiState()
-        class Content(val movies: ArrayList<Movie>) : UiState()
+        class Content(val movies: List<Movie>) : UiState()
         class Navigation(val movie: Movie) : UiState()
     }
 }

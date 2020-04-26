@@ -17,12 +17,14 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_gravity="bottom"
-        android:gravity="bottom"
-        android:textSize="24sp"
-        android:paddingLeft="20dp"
         android:background="@drawable/gradient"
+        android:ellipsize="end"
+        android:gravity="bottom"
+        android:maxLines="2"
+        android:paddingLeft="20dp"
         android:paddingBottom="20dp"
-        tools:text="lorem"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        tools:text="lorem" />
 
 </FrameLayout>

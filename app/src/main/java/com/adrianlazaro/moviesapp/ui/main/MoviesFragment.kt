@@ -55,7 +55,10 @@ class MoviesFragment : Fragment() {
         progress.visibility = getProgressVisibilty(uiState)
 
         when (uiState) {
-            is UiState.Content -> adapter.movies = uiState.movies
+            is UiState.Content -> {
+                adapter.movies = uiState.movies
+                adapter.notifyDataSetChanged()
+            }
             is UiState.Navigation -> findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment())
         }
     }
@@ -69,6 +72,7 @@ class MoviesFragment : Fragment() {
             if (!enabled) {
                 toast(getString(R.string.disabled_permission))
             }
+            moviesViewModel.refresh()
         }
     }
 
