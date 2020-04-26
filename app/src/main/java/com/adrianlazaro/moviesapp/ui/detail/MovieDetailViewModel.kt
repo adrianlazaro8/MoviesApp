@@ -5,11 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.adrianlazaro.domain.Movie
 import com.adrianlazaro.moviesapp.ui.BaseViewModel
+import com.adrianlazaro.usecases.GetMovieById
+import com.adrianlazaro.usecases.ToggleMovieFavorite
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 class MovieDetailViewModel(
     private val movieId: Int,
+    private val findMovieById: GetMovieById,
+    private val toggleMovieFavorite: ToggleMovieFavorite,
     uiDispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : BaseViewModel(uiDispatcher) {
 
