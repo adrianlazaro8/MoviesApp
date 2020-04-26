@@ -44,7 +44,7 @@ class MoviesFragment : Fragment() {
             moviesFragmentComponent = app.component.plus(MoviesFragmentModule())
         }
 
-        adapter = MoviesAdapter()
+        adapter = MoviesAdapter(moviesViewModel::onMovieClicked)
         rv.adapter = adapter
         moviesViewModel.uiState.observe(viewLifecycleOwner, Observer(::updateUi))
         requestLocationPermission()
@@ -55,11 +55,8 @@ class MoviesFragment : Fragment() {
         progress.visibility = getProgressVisibilty(uiState)
 
         when (uiState) {
-            is UiState.Content -> {
-                adapter.movies = uiState.movies
-                adapter.notifyDataSetChanged()
-            }
-            is UiState.Navigation -> findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment())
+            is UiState.Content -> adapter.movies = uiState.movies
+            is UiState.Navigation -> findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(uiState.movie.id))
         }
     }
 

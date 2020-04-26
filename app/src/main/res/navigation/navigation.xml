@@ -12,11 +12,20 @@
         tools:layout="@layout/fragment_movies">
         <action
             android:id="@+id/action_moviesFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment" >
+            <argument
+                android:name="DetailActivity:movieId"
+                android:defaultValue="-1" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.adrianlazaro.moviesapp.ui.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"
-        tools:layout="@layout/fragment_movie_detail" />
+        tools:layout="@layout/fragment_movie_detail" >
+        <argument
+            android:name="DetailActivity:movieId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 </navigation>

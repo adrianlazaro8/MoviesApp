@@ -30,6 +30,10 @@ class MoviesViewModel(
         }
     }
 
+    fun onMovieClicked(movie: Movie){
+        _uiState.value = UiState.Navigation(movie)
+    }
+
 
     sealed class UiState {
         object Loading : UiState()

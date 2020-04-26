@@ -10,7 +10,8 @@ import com.adrianlazaro.moviesapp.common.inflate
 import com.adrianlazaro.moviesapp.common.loadUrl
 import kotlinx.android.synthetic.main.item_video.view.*
 
-class MoviesAdapter() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
+class MoviesAdapter(private val listener : (Movie) -> Unit)
+    : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     var movies: List<Movie> by basicDiffUtil(
         emptyList(),
@@ -26,6 +27,7 @@ class MoviesAdapter() : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = movies[position]
+        holder.itemView.setOnClickListener { listener.invoke(movie) }
         holder.bind(movie)
     }
 
