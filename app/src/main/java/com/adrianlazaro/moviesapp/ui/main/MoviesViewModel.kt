@@ -3,7 +3,10 @@ package com.adrianlazaro.moviesapp.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.adrianlazaro.data.repository.MoviesRepository
 import com.adrianlazaro.domain.Movie
+import com.adrianlazaro.moviesapp.data.database.RoomDataSource
+import com.adrianlazaro.usecases.GetPopularMovies
 
 class MoviesViewModel : ViewModel() {
 

@@ -3,7 +3,7 @@ package com.adrianlazaro.moviesapp.data.database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "Movie")
 data class MovieRoom(
     @PrimaryKey(autoGenerate = true) val id: Int,
     val title: String,
