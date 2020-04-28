@@ -20,6 +20,7 @@ class MoviesViewModel(
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState>
         get() {
+            if(_uiState.value == null) refresh()
             return _uiState
         }
 
@@ -29,11 +30,6 @@ class MoviesViewModel(
             _uiState.value = UiState.Content(getPopularMovies.invoke())
         }
     }
-
-    fun onMovieClicked(movie: Movie){
-        _uiState.value = UiState.Navigation(movie)
-    }
-
 
     sealed class UiState {
         object Loading : UiState()

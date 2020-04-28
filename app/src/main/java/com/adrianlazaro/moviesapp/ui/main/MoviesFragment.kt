@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -44,19 +45,17 @@ class MoviesFragment : Fragment() {
             moviesFragmentComponent = app.component.plus(MoviesFragmentModule())
         }
 
-        adapter = MoviesAdapter(moviesViewModel::onMovieClicked)
+        adapter = MoviesAdapter{
+            findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(it.id))
+        }
         rv.adapter = adapter
-        moviesViewModel.uiState.observe(viewLifecycleOwner, Observer(::updateUi))
         requestLocationPermission()
     }
 
     private fun updateUi(uiState: UiState) {
-
         progress.visibility = getProgressVisibilty(uiState)
-
         when (uiState) {
             is UiState.Content -> adapter.movies = uiState.movies
-            is UiState.Navigation -> findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(uiState.movie.id))
         }
     }
 
@@ -69,7 +68,7 @@ class MoviesFragment : Fragment() {
             if (!enabled) {
                 toast(getString(R.string.disabled_permission))
             }
-            moviesViewModel.refresh()
+            moviesViewModel.uiState.observe(viewLifecycleOwner, Observer(::updateUi))
         }
     }
 
