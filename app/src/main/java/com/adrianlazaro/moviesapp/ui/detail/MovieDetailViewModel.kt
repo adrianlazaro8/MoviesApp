@@ -9,6 +9,7 @@ import com.adrianlazaro.usecases.GetMovieById
 import com.adrianlazaro.usecases.ToggleMovieFavorite
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(
     private val movieId: Int,
@@ -20,8 +21,13 @@ class MovieDetailViewModel(
     private val _movie = MutableLiveData<UiModel>()
     val movie: LiveData<UiModel>
         get() {
+            if (_movie.value == null) findMovie()
             return _movie
         }
+
+    private fun findMovie() = launch {
+        _movie.value = UiModel(findMovieById.invoke(movieId))
+    }
 
     class UiModel(val movie: Movie)
 }
