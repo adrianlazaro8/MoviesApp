@@ -53,9 +53,9 @@ ext {
     coroutinesVersion = '1.1.0'
     coroutinesAdapterVersion = '0.9.2'
 
-    navigationFragmentVersion = "2.1.0"
-    navigationUiVersion = "2.1.0"
-    safeargs_version = "2.1.0-rc01"
+    navigationFragmentVersion = "2.2.2"
+    navigationUiVersion = "2.2.2"
+    safeargs_version = "2.2.2"
 
     glideVersion = "4.11.0"
 
