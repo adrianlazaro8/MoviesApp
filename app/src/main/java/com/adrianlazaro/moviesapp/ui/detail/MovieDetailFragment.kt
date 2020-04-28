@@ -38,7 +38,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun updateUi(model: MovieDetailViewModel.UiModel) = with(model.movie) {
         toolbar_detail.title = title
-        iv_movie.loadUrl(backdropPath)
+        iv_movie.loadUrl(posterPath, true)
         tv_movie_details_summary.text = overview
         movieDetailInfo.setMovie(this)
     }

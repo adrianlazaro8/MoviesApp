@@ -23,8 +23,12 @@ import kotlin.properties.Delegates
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
-fun ImageView.loadUrl(url: String) {
-    Glide.with(context).load("https://image.tmdb.org/t/p/w185/$url").into(this)
+fun ImageView.loadUrl(url: String, bigSize: Boolean = false) {
+    var path = "https://image.tmdb.org/t/p/w185/"
+    if(bigSize){
+        path = "https://image.tmdb.org/t/p/w780/"
+    }
+    Glide.with(context).load("$path$url").into(this)
 }
 
 fun Fragment.toast(message: String, duration: Int = Toast.LENGTH_SHORT){
