@@ -29,5 +29,11 @@ class MovieDetailViewModel(
         _movie.value = UiModel(findMovieById.invoke(movieId))
     }
 
+    fun onFavoriteClicked() = launch {
+        _movie.value?.movie?.let {
+            _movie.value = UiModel(toggleMovieFavorite.invoke(it))
+        }
+    }
+
     class UiModel(val movie: Movie)
 }

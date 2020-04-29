@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 
@@ -33,6 +34,8 @@ class MovieDetailFragment : Fragment() {
         activity?.run {
             movieDetailFragmentComponent = app.component.plus(MovieDetailFragmentModule(args.DetailActivityMovieId))
         }
+
+        movieDetailFavorite.setOnClickListener { movieDetailViewModel.onFavoriteClicked() }
         movieDetailViewModel.movie.observe(viewLifecycleOwner, Observer(::updateUi))
     }
 
@@ -41,5 +44,8 @@ class MovieDetailFragment : Fragment() {
         iv_movie.loadUrl(posterPath, true)
         tv_movie_details_summary.text = overview
         movieDetailInfo.setMovie(this)
+
+        val icon = if (favorite) R.drawable.ic_favorite_fill else R.drawable.ic_favorite_border
+        movieDetailFavorite.setImageDrawable(context?.getDrawable(icon))
     }
 }
