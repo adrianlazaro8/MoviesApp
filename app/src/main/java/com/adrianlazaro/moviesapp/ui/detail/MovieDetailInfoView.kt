@@ -27,6 +27,9 @@ class MovieDetailInfoView @JvmOverloads constructor(
 
             bold { append("Popularity: ") }
             appendln(popularity.toString())
+
+            bold { append("Average: ") }
+            appendln(voteAverage.toString())
         }
     }
 }

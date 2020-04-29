@@ -34,7 +34,7 @@ class MoviesAdapter(private val listener : (Movie) -> Unit)
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(movie: Movie) {
             itemView.iv_movie.loadUrl(movie.posterPath)
-            itemView.tv_movie.text = movie.title
+            itemView.tv_average.text = movie.voteAverage.toString()
         }
     }
 }
