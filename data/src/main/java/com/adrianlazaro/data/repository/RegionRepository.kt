@@ -8,7 +8,7 @@ class RegionRepository(
     private val locationDataSource: LocationDataSource
 ) {
     companion object {
-        private const val DEFAULT_REGION = "ES"
+        const val DEFAULT_REGION = "ES"
     }
 
     suspend fun getLastRegion(): String {
