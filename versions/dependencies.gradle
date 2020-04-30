@@ -71,7 +71,8 @@ ext {
     ]
 
     jetBrainsDependencies = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}"
     ]
 
     classpathDependencies = [
@@ -92,7 +93,7 @@ ext {
             mockitoCore     : "org.mockito:mockito-core:${mockito_version}",
             mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
             mockitoKotlin   : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin_version}",
-            testShared      : project(':testShared')
+            testShared      :  project(':testShared')
 
     ]
 
@@ -129,10 +130,6 @@ ext {
 
     loggingInterceptorDependencies = [
             loggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${loggingInterceptorVersion}",
-    ]
-
-    coroutinesDependencies = [
-            coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}"
     ]
 
     coroutinesAdapterDependencies = [

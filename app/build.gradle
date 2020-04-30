@@ -49,7 +49,6 @@ dependencies {
     implementation androidDependenciesFramework.values()
     implementation retrofitDependencies.values()
     implementation loggingInterceptorDependencies.values()
-    implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
     implementation dexterDependencies.values()
