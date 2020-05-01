@@ -15,3 +15,10 @@ val mockedMovie = Movie(
     5.1,
     false
 )
+
+val defaultFakeMovies = listOf(
+    mockedMovie.copy(1),
+    mockedMovie.copy(2),
+    mockedMovie.copy(3),
+    mockedMovie.copy(4)
+)

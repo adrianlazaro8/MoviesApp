@@ -93,6 +93,7 @@ ext {
             mockitoCore     : "org.mockito:mockito-core:${mockito_version}",
             mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
             mockitoKotlin   : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin_version}",
+            koinTest        : 'org.koin:koin-test:2.1.1',
             testShared      :  project(':testShared')
 
     ]

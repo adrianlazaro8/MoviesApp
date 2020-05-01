@@ -33,7 +33,7 @@ class MoviesViewModel(
 
     sealed class UiState {
         object Loading : UiState()
-        class Content(val movies: List<Movie>) : UiState()
+        data class Content(val movies: List<Movie>) : UiState()
         class Navigation(val movie: Movie) : UiState()
     }
 }
