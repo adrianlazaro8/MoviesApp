@@ -2,7 +2,6 @@ package com.adrianlazaro.moviesapp.ui.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.adrianlazaro.domain.Movie
 import com.adrianlazaro.moviesapp.ui.BaseViewModel
 import com.adrianlazaro.usecases.GetMovieById
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(
     private val movieId: Int,
-    private val findMovieById: GetMovieById,
+    private val getMovieById: GetMovieById,
     private val toggleMovieFavorite: ToggleMovieFavorite,
     uiDispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : BaseViewModel(uiDispatcher) {
@@ -26,7 +25,7 @@ class MovieDetailViewModel(
         }
 
     private fun findMovie() = launch {
-        _movie.value = UiModel(findMovieById.invoke(movieId))
+        _movie.value = UiModel(getMovieById.invoke(movieId))
     }
 
     fun onFavoriteClicked() = launch {

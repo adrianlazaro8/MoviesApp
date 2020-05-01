@@ -22,7 +22,7 @@ import org.mockito.Mockito.times
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class MainIntegrationTests {
+class MoviesIntegationTests {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
@@ -34,15 +34,15 @@ class MainIntegrationTests {
 
     private lateinit var viewModel: MoviesViewModel
 
-    private var fakeLocalDataSource = FakeLocalDataSource()
+    private var localDataSource = FakeLocalDataSource()
 
-    private var fakeRemoteDataSource = FakeRemoteDataSource()
+    private var remoteDataSource = FakeRemoteDataSource()
 
     @Before
     fun setup() {
         val moviesRepository = MoviesRepository(
-            fakeLocalDataSource,
-            fakeRemoteDataSource,
+            localDataSource,
+            remoteDataSource,
             RegionRepository(FakePermissionchecker(), FakeLocationDataSource()),
             "123456"
         )
@@ -54,8 +54,8 @@ class MainIntegrationTests {
 
     @Test
     fun `data is loaded from server when local source is empty`() {
-        fakeRemoteDataSource.movies = defaultFakeMovies
-        fakeLocalDataSource.movies = emptyList()
+        remoteDataSource.movies = defaultFakeMovies
+        localDataSource.movies = emptyList()
         viewModel.uiState.observeForever(observer)
 
         viewModel.refresh()
@@ -65,8 +65,8 @@ class MainIntegrationTests {
 
     @Test
     fun `data is loaded from local source when available`() {
-        fakeRemoteDataSource.movies = emptyList()
-        fakeLocalDataSource.movies = defaultFakeMovies
+        remoteDataSource.movies = emptyList()
+        localDataSource.movies = defaultFakeMovies
         viewModel.uiState.observeForever(observer)
 
         viewModel.refresh()
