@@ -35,5 +35,5 @@ class MovieDetailViewModel(
         }
     }
 
-    class UiModel(val movie: Movie)
+    data class UiModel(val movie: Movie)
 }
