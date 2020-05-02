@@ -1,7 +1,7 @@
 package com.adrianlazaro.moviesapp.ui
 
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
@@ -48,15 +48,14 @@ class UiTest : KoinTest {
     @Test
     fun clickAMovieNavigatesToDetail() {
         activityTestRule.launchActivity(null)
-
-        Espresso.onView(withId(R.id.rv)).perform(
+        onView(withId(R.id.rv)).perform(
             RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 4,
                 ViewActions.click()
             )
         )
 
-        Espresso.onView(withId(R.id.toolbar_detail))
+        onView(withId(R.id.toolbar_detail))
             .check(ViewAssertions.matches(ViewMatchers.hasDescendant(ViewMatchers.withText("Spider-Man: Far from Home"))))
 
     }

@@ -9,8 +9,7 @@ import java.nio.charset.StandardCharsets
 fun MockResponse.fromJson(jsonFile: String): MockResponse =
     setBody(readJsonFile(jsonFile))
 
-private
-fun readJsonFile(jsonFilePath: String): String {
+private fun readJsonFile(jsonFilePath: String): String {
     val context = InstrumentationRegistry.getInstrumentation().context
 
     var br: BufferedReader? = null
