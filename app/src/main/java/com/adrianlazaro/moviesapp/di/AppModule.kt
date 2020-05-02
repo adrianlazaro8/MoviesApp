@@ -13,6 +13,7 @@ import com.adrianlazaro.moviesapp.data.AndroidPermissionChecker
 import com.adrianlazaro.moviesapp.data.PlayServicesLocationDataSource
 import com.adrianlazaro.moviesapp.data.database.MovieDatabase
 import com.adrianlazaro.moviesapp.data.database.RoomDataSource
+import com.adrianlazaro.moviesapp.data.network.TheMovieDb
 import com.adrianlazaro.moviesapp.data.network.TheMovieDbDataSource
 import dagger.Module
 import dagger.Provides
@@ -39,7 +40,10 @@ class AppModule {
     fun localDataSourceProvider(db: MovieDatabase): LocalDataSource = RoomDataSource(db)
 
     @Provides
-    fun remoteDataSourceProvider(): RemoteDataSource = TheMovieDbDataSource()
+    fun theMovieDbProvider(): TheMovieDb = TheMovieDb("https://api.themoviedb.org/3/")
+
+    @Provides
+    fun remoteDataSourceProvider(): RemoteDataSource = TheMovieDbDataSource(theMovieDbProvider())
 
     @Provides
     fun locationDataSourceProvider(app: Application): LocationDataSource =
