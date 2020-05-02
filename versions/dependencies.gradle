@@ -41,11 +41,11 @@ ext {
     // AndroidAnalyzer
     android_analyzer_version = "1.1.1"
 
-    // Dagger
-    daggerVersion = '2.24'
-
     // LifeCycle
     androidarch_lifecycle_version = "1.1.1"
+
+    //Koin
+    koin_version = "2.1.1"
 
     retrofitVersion = '2.6.3'
     loggingInterceptorVersion = '4.2.1'
@@ -63,6 +63,8 @@ ext {
 
     dexterVersion = "5.0.0"
 
+    room_compiler_version = "2.2.1"
+
     versionNumbers = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.2",
@@ -71,8 +73,8 @@ ext {
     ]
 
     jetBrainsDependencies = [
-            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
-            coroutines: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}"
+            kotlin      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            coroutines  : "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesVersion}"
     ]
 
     classpathDependencies = [
@@ -93,7 +95,7 @@ ext {
             mockitoCore     : "org.mockito:mockito-core:${mockito_version}",
             mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
             mockitoKotlin   : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin_version}",
-            koinTest        : 'org.koin:koin-test:2.1.1',
+            koinTest        : "org.koin:koin-test:${koin_version}",
             testShared      :  project(':testShared')
 
     ]
@@ -107,10 +109,14 @@ ext {
             testRunner: "androidx.test:runner:${testrunner_version}",
             testRules:  "androidx.test:rules:${testrules_version}",
             espressoCore : "androidx.test.espresso:espresso-core:${espresso_core_version}",
+            koinTest     : "org.koin:koin-test:${koin_version}",
+            espresso     : 'androidx.test.espresso:espresso-contrib:3.2.0',
+            mockWebServer: 'com.squareup.okhttp3:mockwebserver:4.2.1',
+            okhttpIdling : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
     ]
 
     androidDependenciesFramework = [
-            dagger: "com.google.dagger:dagger:${daggerVersion}",
+            koin            : "org.koin:koin-androidx-viewmodel:${koin_version}",
             servicesLocation: "com.google.android.gms:play-services-location:${servicesLocationVersion}"
 
     ]
@@ -120,8 +126,7 @@ ext {
     ]
 
     androidKaptLibs = [
-            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
-            roomCompiler  : 'androidx.room:room-compiler:2.2.1'
+            roomCompiler  : "androidx.room:room-compiler:${room_compiler_version}"
     ]
 
     retrofitDependencies = [
