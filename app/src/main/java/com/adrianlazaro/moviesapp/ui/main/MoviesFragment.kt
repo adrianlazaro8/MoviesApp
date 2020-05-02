@@ -17,16 +17,15 @@ import com.adrianlazaro.moviesapp.common.getViewModel
 import com.adrianlazaro.moviesapp.common.toast
 import kotlinx.android.synthetic.main.fragment_movies.*
 import com.adrianlazaro.moviesapp.ui.main.MoviesViewModel.UiState
+import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.scope.viewModel
 
 
 class MoviesFragment : Fragment() {
 
-    private lateinit var moviesFragmentComponent: MoviesFragmentComponent
     private lateinit var adapter: MoviesAdapter
 
-    private val moviesViewModel by lazy {
-        getViewModel { moviesFragmentComponent.moviesViewModel }
-    }
+    private val moviesViewModel : MoviesViewModel by lifecycleScope.viewModel(this)
 
     private val coarsePermissionRequester by lazy {
         activity?.let {
@@ -40,10 +39,6 @@ class MoviesFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_movies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        activity?.run {
-            moviesFragmentComponent = app.component.plus(MoviesFragmentModule())
-        }
 
         adapter = MoviesAdapter{
             findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(it.id))

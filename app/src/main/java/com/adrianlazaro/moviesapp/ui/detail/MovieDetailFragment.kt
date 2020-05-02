@@ -13,16 +13,18 @@ import com.adrianlazaro.moviesapp.R
 import com.adrianlazaro.moviesapp.common.app
 import com.adrianlazaro.moviesapp.common.getViewModel
 import com.adrianlazaro.moviesapp.common.loadUrl
+import com.adrianlazaro.moviesapp.ui.main.MoviesViewModel
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
+import org.koin.androidx.scope.lifecycleScope
+import org.koin.androidx.viewmodel.scope.viewModel
+import org.koin.core.parameter.parametersOf
 
 class MovieDetailFragment : Fragment() {
 
-    val args : MovieDetailFragmentArgs by navArgs()
+    private val args : MovieDetailFragmentArgs by navArgs()
 
-    private lateinit var movieDetailFragmentComponent: MovieDetailFragmentComponent
-
-    private val movieDetailViewModel by lazy {
-        getViewModel { movieDetailFragmentComponent.movieDetailViewModel }
+    private val movieDetailViewModel : MovieDetailViewModel by lifecycleScope.viewModel(this) {
+        parametersOf(args.DetailActivityMovieId)
     }
 
     override fun onCreateView(
@@ -31,9 +33,6 @@ class MovieDetailFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_movie_detail, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        activity?.run {
-            movieDetailFragmentComponent = app.component.plus(MovieDetailFragmentModule(args.DetailActivityMovieId))
-        }
 
         movieDetailFavorite.setOnClickListener { movieDetailViewModel.onFavoriteClicked() }
         movieDetailViewModel.movie.observe(viewLifecycleOwner, Observer(::updateUi))
