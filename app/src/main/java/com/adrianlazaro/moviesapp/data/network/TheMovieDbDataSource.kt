@@ -7,7 +7,7 @@ import com.adrianlazaro.moviesapp.common.toDomainMovie
 class TheMovieDbDataSource : RemoteDataSource {
 
     override suspend fun getPopularMovies(apiKey: String, region: String): List<Movie> =
-        TheMovieDb.service
+        TheMovieDb("https://api.themoviedb.org/3/").service
             .getPopularMovies(apiKey, region)
             .results
             .map { it.toDomainMovie() }

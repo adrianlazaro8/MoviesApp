@@ -104,9 +104,12 @@ ext {
 
     androidTestDependencies = [
             androidXJUnit: "androidx.test.ext:junit:${androidx_junit_version}",
+            espresso     : 'androidx.test.espresso:espresso-contrib:3.2.0',
             testRunner: "androidx.test:runner:${testrunner_version}",
             testRules:  "androidx.test:rules:${testrules_version}",
             espressoCore : "androidx.test.espresso:espresso-core:${espresso_core_version}",
+            mockWebServer: 'com.squareup.okhttp3:mockwebserver:4.2.1',
+            okhttpIdling : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
     ]
 
     androidDependenciesFramework = [
