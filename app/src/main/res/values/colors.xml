@@ -3,4 +3,5 @@
     <color name="colorPrimary">#AF2020</color>
     <color name="colorPrimaryDark">#730000</color>
     <color name="colorAccent">#7C2020</color>
+    <color name="splash_background">#c33a3e</color>
 </resources>
