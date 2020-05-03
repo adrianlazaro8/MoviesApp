@@ -58,7 +58,7 @@ class MoviesIntegationTests {
         localDataSource.movies = emptyList()
         viewModel.uiState.observeForever(observer)
 
-        viewModel.refresh()
+        viewModel.requestMovies()
 
         verify(observer, times(2)).onChanged(MoviesViewModel.UiState.Content(defaultFakeMovies))
     }
@@ -69,7 +69,7 @@ class MoviesIntegationTests {
         localDataSource.movies = defaultFakeMovies
         viewModel.uiState.observeForever(observer)
 
-        viewModel.refresh()
+        viewModel.requestMovies()
 
         verify(observer, times(2)).onChanged(MoviesViewModel.UiState.Content(defaultFakeMovies))
     }

@@ -2,10 +2,7 @@ package com.adrianlazaro.moviesapp.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.adrianlazaro.data.repository.MoviesRepository
 import com.adrianlazaro.domain.Movie
-import com.adrianlazaro.moviesapp.data.database.RoomDataSource
 import com.adrianlazaro.moviesapp.ui.BaseViewModel
 import com.adrianlazaro.usecases.GetPopularMovies
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,19 +17,24 @@ class MoviesViewModel(
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState>
         get() {
-            if(_uiState.value == null) refresh()
+            if(_uiState.value == null) requestMovies()
             return _uiState
         }
 
-    fun refresh() {
+    fun requestMovies() {
         launch {
             _uiState.value = UiState.Loading
             _uiState.value = UiState.Content(getPopularMovies.invoke())
         }
     }
 
+    fun refresh(){
+        _uiState.value = UiState.Refresh
+    }
+
     sealed class UiState {
         object Loading : UiState()
+        object Refresh : UiState()
         data class Content(val movies: List<Movie>) : UiState()
     }
 }

@@ -6,14 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.adrianlazaro.moviesapp.R
 import com.adrianlazaro.moviesapp.common.PermissionRequester
-import com.adrianlazaro.moviesapp.common.app
-import com.adrianlazaro.moviesapp.common.getViewModel
 import com.adrianlazaro.moviesapp.common.toast
 import kotlinx.android.synthetic.main.fragment_movies.*
 import com.adrianlazaro.moviesapp.ui.main.MoviesViewModel.UiState
@@ -42,15 +38,29 @@ class MoviesFragment : Fragment() {
         adapter = MoviesAdapter{
             findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(it.id));
         }
+        initSwipeRefresh()
         rv.adapter = adapter
         requestLocationPermission()
+    }
+
+    private fun initSwipeRefresh() {
+        swipeRefreshLayout.setOnRefreshListener {
+            moviesViewModel.refresh()
+        }
     }
 
     private fun updateUi(uiState: UiState) {
         progress.visibility = View.GONE
         when (uiState) {
             is UiState.Loading -> progress.visibility = View.VISIBLE
-            is UiState.Content -> adapter.movies = uiState.movies
+            is UiState.Refresh -> {
+                swipeRefreshLayout.isRefreshing = true
+                moviesViewModel.requestMovies()
+            }
+            is UiState.Content -> {
+                adapter.movies = uiState.movies
+                swipeRefreshLayout.isRefreshing = false
+            }
         }
     }
 

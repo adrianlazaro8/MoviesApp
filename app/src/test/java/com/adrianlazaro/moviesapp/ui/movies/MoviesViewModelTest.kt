@@ -5,7 +5,6 @@ import androidx.lifecycle.Observer
 import com.adrianlazaro.moviesapp.ui.main.MoviesViewModel
 import com.adrianlazaro.testshared.mockedMovie
 import com.adrianlazaro.usecases.GetPopularMovies
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +42,7 @@ class MoviesViewModelTest {
             whenever(getPopularMovies.invoke()).thenReturn(movies)
             viewModel.uiState.observeForever(observer)
 
-            viewModel.refresh()
+            viewModel.requestMovies()
 
             verify(observer).onChanged(MoviesViewModel.UiState.Loading)
         }
