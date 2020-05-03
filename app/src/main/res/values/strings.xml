@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MoviesApp</string>
+
+    <string name="disabled_permission">Location permission should be enabled for accurated data based on your country</string>
 </resources>

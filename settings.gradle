@@ -1,2 +1,6 @@
 rootProject.name='MoviesApp'
 include ':app'
+include ':data'
+include ':usecases'
+include ':domain'
+include ':testShared'
