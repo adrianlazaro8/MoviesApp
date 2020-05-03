@@ -39,23 +39,19 @@ class MoviesFragment : Fragment() {
     ): View? = inflater.inflate(R.layout.fragment_movies, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         adapter = MoviesAdapter{
-            findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(it.id))
+            findNavController().navigate(MoviesFragmentDirections.actionMoviesFragmentToMovieDetailFragment(it.id));
         }
         rv.adapter = adapter
         requestLocationPermission()
     }
 
     private fun updateUi(uiState: UiState) {
-        progress.visibility = getProgressVisibilty(uiState)
+        progress.visibility = View.GONE
         when (uiState) {
+            is UiState.Loading -> progress.visibility = View.VISIBLE
             is UiState.Content -> adapter.movies = uiState.movies
         }
-    }
-
-    private fun getProgressVisibilty(uiState: UiState): Int {
-        return if (uiState is UiState.Loading) View.VISIBLE else View.GONE
     }
 
     private fun requestLocationPermission() {
@@ -66,5 +62,4 @@ class MoviesFragment : Fragment() {
             moviesViewModel.uiState.observe(viewLifecycleOwner, Observer(::updateUi))
         }
     }
-
 }

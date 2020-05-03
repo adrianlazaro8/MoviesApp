@@ -41,14 +41,16 @@ fun Application.initDI() {
 
 private val appModule = module {
     single(named("apiKey")) { BuildConfig.MOVIE_DB_API_KEY }
+    single(named("baseUrl")) { "https://api.themoviedb.org/3/" }
+
+    single { TheMovieDb(get(named("baseUrl"))) }
     single { MovieDatabase.build(get()) }
+    single<CoroutineDispatcher> { Dispatchers.Main }
+
     factory<LocalDataSource> { RoomDataSource(get()) }
     factory<RemoteDataSource> { TheMovieDbDataSource(get()) }
     factory<LocationDataSource> { PlayServicesLocationDataSource(get()) }
     factory<PermissionCheckerDataSource> { AndroidPermissionChecker(get()) }
-    single<CoroutineDispatcher> { Dispatchers.Main }
-    single(named("baseUrl")) { "https://api.themoviedb.org/3/" }
-    single { TheMovieDb(get(named("baseUrl"))) }
 }
 
 val dataModule = module {
